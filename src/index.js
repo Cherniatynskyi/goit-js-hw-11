@@ -27,6 +27,7 @@ refs.onLoadMoreBtn.addEventListener('click', onLoadMore);
 async function onSearch(e) {
     e.preventDefault();
     clearHitsGallery();
+    hideShowMoreBtn()
     
     photosApiService.resetPage();
     photosApiService.query = e.currentTarget.elements.searchQuery.value;
@@ -55,7 +56,6 @@ async function onSearch(e) {
     }
 }
 async function onLoadMore() {
-    console.log(photosApiService.totalHits)
     const result = await photosApiService.fetchPhotos();
     appendHitsMarkup(result);
     scrollTo();
