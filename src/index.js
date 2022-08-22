@@ -55,12 +55,12 @@ async function onSearch(e) {
     }
 }
 async function onLoadMore() {
+    console.log(photosApiService.totalHits)
     const result = await photosApiService.fetchPhotos();
     appendHitsMarkup(result);
-    
     scrollTo();
-    onLastPhotos();
     photosApiService.lastTotalHits();
+    onLastPhotos();
     lightbox.refresh();
 }
 
@@ -85,9 +85,9 @@ function chekInput() {
     }
    
 function onLastPhotos() {
-        if (photosApiService.totalHits <= 40) {
+    if (photosApiService.totalHits <= 40) {
+        Notiflix.Notify.info("We're sorry, but you've reached the end of search results");
     hideShowMoreBtn();
-  Notiflix.Notify.info("We're sorry, but you've reached the end of search results");
     return;
   }
     }
